@@ -3,6 +3,7 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import MainLayout from '../layouts/MainLayout.vue'
 import OrderList from '../views/Orders/OrderList.vue'
+import SubWalletList from '../views/SubWallet/SubWalletList.vue'
 
 
 const router = createRouter({
@@ -35,6 +36,11 @@ const router = createRouter({
                     path: 'orders',
                     name: 'order-list',
                     component: OrderList
+                },
+                {
+                    path: 'subwallets',
+                    name: 'subwallet-list',
+                    component: SubWalletList
                 },
                 {
                     path: 'settings',

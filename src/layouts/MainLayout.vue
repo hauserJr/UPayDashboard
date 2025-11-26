@@ -19,6 +19,17 @@
         </router-link>
         
         <router-link 
+          to="/dashboard/subwallets" 
+          class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700/50 hover:text-white rounded-lg transition-colors duration-200"
+          active-class="bg-gray-700/50 text-white border-l-4 border-secondary"
+        >
+          <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+          </svg>
+          SubWallet
+        </router-link>
+        
+        <router-link 
           to="/dashboard/settings" 
           class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700/50 hover:text-white rounded-lg transition-colors duration-200"
           active-class="bg-gray-700/50 text-white border-l-4 border-secondary"
@@ -88,6 +99,7 @@ const currentRouteName = computed(() => {
   switch (route.name) {
     case 'order-list': return 'Order Management'
     case 'order-create': return 'Create New Order'
+    case 'subwallet-list': return 'SubWallet Management'
     case 'merchant-settings': return 'Merchant Settings'
     default: return 'Dashboard'
   }
