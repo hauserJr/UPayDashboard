@@ -7,9 +7,5 @@ export const orderApi = {
 
     create(data) {
         return api.post('/order/create', data)
-    },
-
-    getCallbacks(orderId) {
-        return api.get(`/order/${orderId}/callbacks`)
     }
 }
