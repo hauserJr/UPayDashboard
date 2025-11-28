@@ -2,7 +2,7 @@
 export const apiConfig = {
     // API Base URL
     // 開發環境使用 localhost，正式環境請修改為實際的 API domain
-    baseURL: 'https://pokerhub.duckdns.org/api',
+    baseURL: 'https://api.u-pay.cloud/api',
 
     // 其他環境範例（註解供參考）
     // 正式環境: 'https://api.yourdomain.com/api'
