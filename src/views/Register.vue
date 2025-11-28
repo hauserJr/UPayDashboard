@@ -3,12 +3,12 @@
     <div class="max-w-md w-full space-y-8 bg-white/10 backdrop-blur-lg p-8 rounded-2xl shadow-2xl border border-white/20">
       <div>
         <h2 class="mt-6 text-center text-3xl font-extrabold text-white tracking-tight">
-          Create Account
+          {{ $t('register.title') }}
         </h2>
         <p class="mt-2 text-center text-sm text-gray-300">
-          Or
+          {{ $t('register.or') }}
           <router-link to="/login" class="font-medium text-secondary hover:text-emerald-400 transition-colors duration-200">
-            sign in to existing account
+            {{ $t('register.loginLink') }}
           </router-link>
         </p>
       </div>
@@ -16,7 +16,7 @@
       <form class="mt-8 space-y-6" @submit.prevent="handleRegister">
         <div class="rounded-md shadow-sm space-y-4">
           <div>
-            <label for="account" class="sr-only">Account</label>
+            <label for="account" class="sr-only">{{ $t('register.account') }}</label>
             <input
               id="account"
               name="account"
@@ -24,11 +24,11 @@
               required
               v-model="form.account"
               class="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-600 placeholder-gray-400 text-white bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent focus:z-10 sm:text-sm transition-all duration-200"
-              placeholder="Account Name"
+              :placeholder="$t('register.account')"
             />
           </div>
           <div>
-            <label for="name" class="sr-only">Merchant Name</label>
+            <label for="name" class="sr-only">{{ $t('register.merchantName') }}</label>
             <input
               id="name"
               name="name"
@@ -36,12 +36,12 @@
               required
               v-model="form.name"
               class="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-600 placeholder-gray-400 text-white bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent focus:z-10 sm:text-sm transition-all duration-200"
-              placeholder="Merchant Name"
+              :placeholder="$t('register.merchantName')"
             />
           </div>
 
           <div>
-            <label for="password" class="sr-only">Password</label>
+            <label for="password" class="sr-only">{{ $t('register.password') }}</label>
             <input
               id="password"
               name="password"
@@ -49,11 +49,11 @@
               required
               v-model="form.password"
               class="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-600 placeholder-gray-400 text-white bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent focus:z-10 sm:text-sm transition-all duration-200"
-              placeholder="Password"
+              :placeholder="$t('register.password')"
             />
           </div>
           <div>
-            <label for="confirm-password" class="sr-only">Confirm Password</label>
+            <label for="confirm-password" class="sr-only">{{ $t('register.confirmPassword') }}</label>
             <input
               id="confirm-password"
               name="confirm-password"
@@ -61,7 +61,7 @@
               required
               v-model="form.confirmPassword"
               class="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-600 placeholder-gray-400 text-white bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent focus:z-10 sm:text-sm transition-all duration-200"
-              placeholder="Confirm Password"
+              :placeholder="$t('register.confirmPassword')"
             />
           </div>
         </div>
@@ -81,8 +81,8 @@
                 <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0 1 1 0 002 0z" />
               </svg>
             </span>
-            <span v-if="!isLoading">Create Account</span>
-            <span v-else>Creating...</span>
+            <span v-if="!isLoading">{{ $t('register.createAccount') }}</span>
+            <span v-else>{{ $t('register.creating') }}</span>
           </button>
         </div>
       </form>
@@ -93,9 +93,11 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { authApi } from '../api/auth'
 
 const router = useRouter()
+const { t } = useI18n()
 const isLoading = ref(false)
 const errorMessage = ref('')
 
@@ -110,12 +112,12 @@ const handleRegister = async () => {
   errorMessage.value = ''
   
   if (form.value.password !== form.value.confirmPassword) {
-    errorMessage.value = 'Passwords do not match'
+    errorMessage.value = t('register.passwordMismatch')
     return
   }
 
   if (form.value.password.length < 6) {
-    errorMessage.value = 'Password must be at least 6 characters'
+    errorMessage.value = t('register.passwordTooShort')
     return
   }
 
@@ -133,7 +135,7 @@ const handleRegister = async () => {
     
     await authApi.register(payload)
     
-    alert('Registration successful! Please login.')
+    alert(t('register.registrationSuccess'))
     router.push('/login')
   } catch (error) {
     console.error(error)
@@ -151,7 +153,7 @@ const handleRegister = async () => {
       // Also display in UI for better visibility
       errorMessage.value = msg
     } else {
-      errorMessage.value = error.response?.data?.message || 'Registration failed. Please try again.'
+      errorMessage.value = error.response?.data?.message || t('register.registrationFailed')
       alert(errorMessage.value)
     }
   } finally {

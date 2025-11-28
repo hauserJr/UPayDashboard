@@ -2,7 +2,7 @@
   <div class="space-y-6">
     <!-- Header -->
     <div class="flex justify-between items-center">
-      <h2 class="text-2xl font-bold text-white">SubWallet Management</h2>
+      <h2 class="text-2xl font-bold text-white">{{ $t('subwallet.title') }}</h2>
     </div>
 
     <!-- Query Filter -->
@@ -10,12 +10,12 @@
       <form @submit.prevent="handleSearch" class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Wallet Address -->
         <div>
-          <label class="block text-sm font-medium text-gray-400 mb-2">Wallet Address</label>
+          <label class="block text-sm font-medium text-gray-400 mb-2">{{ $t('subwallet.walletAddress') }}</label>
           <input 
             v-model="query.Address"
             type="text" 
             class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2.5 text-white focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200"
-            placeholder="Enter wallet address"
+            :placeholder="$t('subwallet.enterWalletAddress')"
           >
         </div>
 
@@ -26,7 +26,7 @@
             @click="resetQuery"
             class="px-6 py-2.5 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors duration-200"
           >
-            Reset
+            {{ $t('common.reset') }}
           </button>
           <button 
             type="submit" 
@@ -37,7 +37,7 @@
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
               <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            Search
+            {{ $t('common.search') }}
           </button>
         </div>
       </form>
@@ -49,14 +49,14 @@
         <table class="min-w-full divide-y divide-gray-700">
           <thead class="bg-gray-700/50">
             <tr>
-              <th scope="col" class="px-4 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Wallet Address</th>
-              <th scope="col" class="px-4 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Total Receive Amount</th>
+              <th scope="col" class="px-4 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">{{ $t('subwallet.walletAddress') }}</th>
+              <th scope="col" class="px-4 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">{{ $t('subwallet.totalReceiveAmount') }}</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-700">
             <tr v-if="subwallets.length === 0 && !isLoading">
               <td colspan="2" class="px-6 py-12 text-center text-gray-400">
-                No subwallets found.
+                {{ $t('subwallet.noSubwallets') }}
               </td>
             </tr>
             <tr v-if="isLoading">
@@ -66,7 +66,7 @@
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
-                  <span class="ml-3">Loading...</span>
+                  <span class="ml-3">{{ $t('common.loading') }}</span>
                 </div>
               </td>
             </tr>
@@ -79,7 +79,7 @@
                   <button 
                     @click="copyToClipboard(wallet.address)" 
                     class="ml-2 text-secondary hover:text-emerald-400 transition-colors duration-200"
-                    title="Copy address"
+                    :title="$t('subwallet.copyAddress')"
                   >
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
@@ -98,10 +98,10 @@
       <!-- Pagination -->
       <div class="bg-gray-700/30 px-6 py-4 border-t border-gray-700 flex items-center justify-between">
         <div class="text-sm text-gray-400">
-          Showing page <span class="font-medium text-white">{{ pagination.page }}</span> of 
+          {{ $t('pagination.showingPage') }} <span class="font-medium text-white">{{ pagination.page }}</span> {{ $t('pagination.of') }} 
           <span class="font-medium text-white">{{ pagination.totalPages }}</span>
           <span class="mx-2">•</span>
-          Total <span class="font-medium text-white">{{ pagination.totalCount }}</span> records
+          {{ $t('pagination.total') }} <span class="font-medium text-white">{{ pagination.totalCount }}</span> {{ $t('pagination.records') }}
         </div>
         <div class="flex space-x-2">
           <button 
@@ -109,14 +109,14 @@
             :disabled="pagination.page === 1 || isLoading"
             class="px-4 py-2 border border-gray-600 rounded-lg text-sm font-medium text-gray-300 hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
           >
-            Previous
+            {{ $t('common.previous') }}
           </button>
           <button 
             @click="changePage(1)" 
             :disabled="pagination.page >= pagination.totalPages || isLoading"
             class="px-4 py-2 border border-gray-600 rounded-lg text-sm font-medium text-gray-300 hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
           >
-            Next
+            {{ $t('common.next') }}
           </button>
         </div>
       </div>
@@ -127,8 +127,10 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { subwalletApi } from '../../api/subwallet'
 
+const { t } = useI18n()
 const isLoading = ref(false)
 const subwallets = ref([])
 const pagination = ref({
@@ -187,8 +189,7 @@ const formatDate = (dateString) => {
 const copyToClipboard = async (text) => {
   try {
     await navigator.clipboard.writeText(text)
-    // You could add a toast notification here
-    alert('Address copied to clipboard!')
+    alert(t('subwallet.addressCopied'))
   } catch (err) {
     console.error('Failed to copy:', err)
   }

@@ -1,0 +1,103 @@
+{
+    "common": {
+        "search": "Search",
+        "reset": "Reset",
+        "loading": "Loading...",
+        "logout": "Logout",
+        "previous": "Previous",
+        "next": "Next",
+        "close": "Close",
+        "noData": "No data",
+        "confirm": "Confirm",
+        "cancel": "Cancel"
+    },
+    "nav": {
+        "orderList": "Order List",
+        "subWallet": "SubWallet",
+        "settings": "Settings"
+    },
+    "header": {
+        "orderManagement": "Order Management",
+        "subwalletManagement": "SubWallet Management",
+        "merchantSettings": "Merchant Settings",
+        "dashboard": "Dashboard"
+    },
+    "login": {
+        "title": "Merchant Login",
+        "account": "Account",
+        "password": "Password",
+        "signIn": "Sign in",
+        "or": "Or",
+        "registerLink": "register a new account",
+        "loginFailed": "Login failed. Please check your credentials."
+    },
+    "register": {
+        "title": "Create Account",
+        "account": "Account Name",
+        "merchantName": "Merchant Name",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "createAccount": "Create Account",
+        "creating": "Creating...",
+        "or": "Or",
+        "loginLink": "sign in to existing account",
+        "passwordMismatch": "Passwords do not match",
+        "passwordTooShort": "Password must be at least 6 characters",
+        "registrationSuccess": "Registration successful! Please login.",
+        "registrationFailed": "Registration failed. Please try again."
+    },
+    "subwallet": {
+        "title": "SubWallet Management",
+        "walletAddress": "Wallet Address",
+        "totalReceiveAmount": "Total Receive Amount",
+        "enterWalletAddress": "Enter wallet address",
+        "noSubwallets": "No subwallets found.",
+        "copyAddress": "Copy address",
+        "addressCopied": "Address copied to clipboard!"
+    },
+    "order": {
+        "title": "Order Management",
+        "orderNumber": "Order Number",
+        "orderNo": "Order No.",
+        "amount": "Amount",
+        "received": "Received",
+        "fromAddress": "From Address",
+        "toAddress": "To Address",
+        "txHash": "Tx Hash",
+        "status": "Status",
+        "transactionAt": "Transaction At",
+        "createdAt": "Created At",
+        "dateRange": "Date Range",
+        "to": "to",
+        "enterOrderNumber": "Enter order number",
+        "allStatus": "All Status",
+        "noOrders": "No orders found.",
+        "orderDetails": "Order Details",
+        "callbackHistory": "Callback History",
+        "remark": "Remark",
+        "url": "URL",
+        "time": "Time",
+        "noCallbackRecords": "No callback records found."
+    },
+    "status": {
+        "pending": "Pending",
+        "paid": "Paid",
+        "expired": "Expired",
+        "failed": "Failed",
+        "success": "Success",
+        "active": "Active",
+        "inactive": "Inactive",
+        "suspended": "Suspended",
+        "unknown": "Unknown"
+    },
+    "pagination": {
+        "showingPage": "Showing page",
+        "of": "of",
+        "pages": "pages",
+        "total": "Total",
+        "records": "records"
+    },
+    "logout": {
+        "confirmMessage": "Are you sure you want to logout?"
+    }
+}

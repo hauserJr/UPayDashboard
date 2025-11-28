@@ -3,19 +3,19 @@
     <div class="max-w-md w-full space-y-8 bg-white/10 backdrop-blur-lg p-8 rounded-2xl shadow-2xl border border-white/20">
       <div>
         <h2 class="mt-6 text-center text-3xl font-extrabold text-white tracking-tight">
-          Merchant Login
+          {{ $t('login.title') }}
         </h2>
         <p class="mt-2 text-center text-sm text-gray-300">
-          Or
+          {{ $t('login.or') }}
           <router-link to="/register" class="font-medium text-secondary hover:text-emerald-400 transition-colors duration-200">
-            register a new account
+            {{ $t('login.registerLink') }}
           </router-link>
         </p>
       </div>
       <form class="mt-8 space-y-6" @submit.prevent="handleLogin">
         <div class="rounded-md shadow-sm -space-y-px">
           <div class="mb-4">
-            <label for="account" class="sr-only">Account</label>
+            <label for="account" class="sr-only">{{ $t('login.account') }}</label>
             <input
               id="account"
               name="account"
@@ -23,11 +23,11 @@
               required
               v-model="form.account"
               class="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-600 placeholder-gray-400 text-white bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent focus:z-10 sm:text-sm transition-all duration-200"
-              placeholder="Account"
+              :placeholder="$t('login.account')"
             />
           </div>
           <div>
-            <label for="password" class="sr-only">Password</label>
+            <label for="password" class="sr-only">{{ $t('login.password') }}</label>
             <input
               id="password"
               name="password"
@@ -35,7 +35,7 @@
               required
               v-model="form.password"
               class="appearance-none rounded-lg relative block w-full px-3 py-3 border border-gray-600 placeholder-gray-400 text-white bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent focus:z-10 sm:text-sm transition-all duration-200"
-              placeholder="Password"
+              :placeholder="$t('login.password')"
             />
           </div>
         </div>
@@ -51,7 +51,7 @@
                 <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
               </svg>
             </span>
-            Sign in
+            {{ $t('login.signIn') }}
           </button>
         </div>
       </form>

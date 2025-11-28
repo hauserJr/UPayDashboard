@@ -2,7 +2,7 @@
   <div class="space-y-6">
     <!-- Header -->
     <div class="flex justify-between items-center">
-      <h2 class="text-2xl font-bold text-white">Order Management</h2>
+      <h2 class="text-2xl font-bold text-white">{{ $t('order.title') }}</h2>
     </div>
 
     <!-- Query Filter -->
@@ -10,33 +10,33 @@
       <form @submit.prevent="handleSearch" class="grid grid-cols-1 md:grid-cols-4 gap-6">
         <!-- Order Number -->
         <div>
-          <label class="block text-sm font-medium text-gray-400 mb-2">Order Number</label>
+          <label class="block text-sm font-medium text-gray-400 mb-2">{{ $t('order.orderNumber') }}</label>
           <input 
             v-model="query.OrderNum"
             type="text" 
             class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2.5 text-white focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200"
-            placeholder="Enter order number"
+            :placeholder="$t('order.enterOrderNumber')"
           >
         </div>
 
         <!-- Status -->
         <div>
-          <label class="block text-sm font-medium text-gray-400 mb-2">Status</label>
+          <label class="block text-sm font-medium text-gray-400 mb-2">{{ $t('order.status') }}</label>
           <select 
             v-model="query.Status"
             class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2.5 text-white focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200"
           >
-            <option value="">All Status</option>
-            <option :value="0">Pending</option>
-            <option :value="1">Paid</option>
-            <option :value="2">Expired</option>
-            <option :value="3">Failed</option>
+            <option value="">{{ $t('order.allStatus') }}</option>
+            <option :value="0">{{ $t('status.pending') }}</option>
+            <option :value="1">{{ $t('status.paid') }}</option>
+            <option :value="2">{{ $t('status.expired') }}</option>
+            <option :value="3">{{ $t('status.failed') }}</option>
           </select>
         </div>
 
         <!-- Date Range -->
         <div class="md:col-span-2">
-          <label class="block text-sm font-medium text-gray-400 mb-2">Date Range</label>
+          <label class="block text-sm font-medium text-gray-400 mb-2">{{ $t('order.dateRange') }}</label>
           <div class="flex space-x-4 items-center">
             <input 
               v-model="query.StartTime"
@@ -44,7 +44,7 @@
               type="datetime-local" 
               class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2.5 text-white focus:ring-2 focus:ring-secondary focus:border-transparent transition-all duration-200"
             >
-            <span class="text-gray-400">to</span>
+            <span class="text-gray-400">{{ $t('order.to') }}</span>
             <input 
               v-model="query.EndTime"
               :key="'end-' + dateInputKey"
@@ -61,7 +61,7 @@
             @click="resetQuery"
             class="px-6 py-2.5 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors duration-200"
           >
-            Reset
+            {{ $t('common.reset') }}
           </button>
           <button 
             type="submit" 
@@ -72,7 +72,7 @@
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
               <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            Search
+            {{ $t('common.search') }}
           </button>
         </div>
       </form>
@@ -84,21 +84,21 @@
         <table class="min-w-full divide-y divide-gray-700">
           <thead class="bg-gray-700/50">
             <tr>
-              <th scope="col" class="px-4 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Order No.</th>
-              <th scope="col" class="px-4 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Amount</th>
-              <th scope="col" class="px-4 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Received</th>
-              <th scope="col" class="px-4 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">From Address</th>
-              <th scope="col" class="px-4 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">To Address</th>
-              <th scope="col" class="px-4 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Tx Hash</th>
-              <th scope="col" class="px-4 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Status</th>
-              <th scope="col" class="px-4 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Transaction At</th>
-              <th scope="col" class="px-4 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Created At</th>
+              <th scope="col" class="px-4 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">{{ $t('order.orderNo') }}</th>
+              <th scope="col" class="px-4 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">{{ $t('order.amount') }}</th>
+              <th scope="col" class="px-4 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">{{ $t('order.received') }}</th>
+              <th scope="col" class="px-4 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">{{ $t('order.fromAddress') }}</th>
+              <th scope="col" class="px-4 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">{{ $t('order.toAddress') }}</th>
+              <th scope="col" class="px-4 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">{{ $t('order.txHash') }}</th>
+              <th scope="col" class="px-4 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">{{ $t('order.status') }}</th>
+              <th scope="col" class="px-4 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">{{ $t('order.transactionAt') }}</th>
+              <th scope="col" class="px-4 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">{{ $t('order.createdAt') }}</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-700">
             <tr v-if="orders.length === 0 && !isLoading">
               <td colspan="9" class="px-6 py-12 text-center text-gray-400">
-                No orders found.
+                {{ $t('order.noOrders') }}
               </td>
             </tr>
             <tr v-if="isLoading">
@@ -108,7 +108,7 @@
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
-                  <span class="ml-3">Loading...</span>
+                  <span class="ml-3">{{ $t('common.loading') }}</span>
                 </div>
               </td>
             </tr>
@@ -171,10 +171,10 @@
       <!-- Pagination -->
       <div class="bg-gray-700/30 px-6 py-4 border-t border-gray-700 flex items-center justify-between">
         <div class="text-sm text-gray-400">
-          Showing page <span class="font-medium text-white">{{ pagination.page }}</span> of 
+          {{ $t('pagination.showingPage') }} <span class="font-medium text-white">{{ pagination.page }}</span> {{ $t('pagination.of') }} 
           <span class="font-medium text-white">{{ pagination.totalPages }}</span>
           <span class="mx-2">•</span>
-          Total <span class="font-medium text-white">{{ pagination.totalCount }}</span> records
+          {{ $t('pagination.total') }} <span class="font-medium text-white">{{ pagination.totalCount }}</span> {{ $t('pagination.records') }}
         </div>
         <div class="flex space-x-2">
           <button 
@@ -182,14 +182,14 @@
             :disabled="pagination.page === 1 || isLoading"
             class="px-4 py-2 border border-gray-600 rounded-lg text-sm font-medium text-gray-300 hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
           >
-            Previous
+            {{ $t('common.previous') }}
           </button>
           <button 
             @click="changePage(1)" 
             :disabled="pagination.page >= pagination.totalPages || isLoading"
             class="px-4 py-2 border border-gray-600 rounded-lg text-sm font-medium text-gray-300 hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
           >
-            Next
+            {{ $t('common.next') }}
           </button>
         </div>
       </div>
@@ -209,31 +209,31 @@
             <div class="sm:flex sm:items-start">
               <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
                 <h3 class="text-lg leading-6 font-medium text-white mb-4" id="modal-title">
-                  Order Details: {{ selectedOrder?.merchantOrderNum }}
+                  {{ $t('order.orderDetails') }}: {{ selectedOrder?.merchantOrderNum }}
                 </h3>
                 
                 <!-- Callback History Table -->
                 <div class="mb-6">
-                  <h4 class="text-md font-medium text-gray-300 mb-2">Callback History</h4>
+                  <h4 class="text-md font-medium text-gray-300 mb-2">{{ $t('order.callbackHistory') }}</h4>
                   <div class="bg-gray-700/30 rounded-lg border border-gray-600 overflow-hidden">
                     <table class="min-w-full divide-y divide-gray-600">
                       <thead class="bg-gray-700">
                         <tr>
-                          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">URL</th>
-                          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Time</th>
-                          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Status</th>
+                          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">{{ $t('order.url') }}</th>
+                          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">{{ $t('order.time') }}</th>
+                          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">{{ $t('order.status') }}</th>
                         </tr>
                       </thead>
                       <tbody class="divide-y divide-gray-600">
                         <tr v-if="callbacks.length === 0">
-                          <td colspan="3" class="px-4 py-3 text-center text-sm text-gray-400">No callback records found.</td>
+                          <td colspan="3" class="px-4 py-3 text-center text-sm text-gray-400">{{ $t('order.noCallbackRecords') }}</td>
                         </tr>
                         <tr v-for="(callback, index) in callbacks" :key="index">
                           <td class="px-4 py-3 text-sm text-gray-300 break-all">{{ callback.callbackUrl }}</td>
                           <td class="px-4 py-3 text-sm text-gray-300 whitespace-nowrap">{{ formatDate(callback.callbackAt) }}</td>
                           <td class="px-4 py-3 text-sm whitespace-nowrap">
                             <span :class="callback.callbackStatus ? 'text-green-400' : 'text-red-400'">
-                              {{ callback.callbackStatus ? 'Success' : 'Failed' }}
+                              {{ callback.callbackStatus ? $t('status.success') : $t('status.failed') }}
                             </span>
                           </td>
                         </tr>
@@ -244,8 +244,8 @@
 
                 <!-- Order Remark -->
                 <div>
-                  <h4 class="text-md font-medium text-gray-300 mb-2">Remark</h4>
-                  <div class="bg-gray-700/30 rounded-lg border border-gray-600 p-4 min-h-[60px]">
+                  <h4 class="text-md font-medium text-gray-300 mb-2">{{ $t('order.remark') }}</h4>
+                  <div class="bg-gray-700/30 rounded-lg border border-gray-600 p-4 min-h-[60px">
                     <p class="text-sm text-gray-300 whitespace-pre-wrap">{{ selectedOrder?.remark || '-' }}</p>
                   </div>
                 </div>
@@ -254,7 +254,7 @@
           </div>
           <div class="bg-gray-700/50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
             <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-600 shadow-sm px-4 py-2 bg-gray-800 text-base font-medium text-gray-300 hover:bg-gray-700 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" @click="closeModal">
-              Close
+              {{ $t('common.close') }}
             </button>
           </div>
         </div>
@@ -266,9 +266,11 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { orderApi } from '../../api/order'
 import { getExplorerUrl } from '../../config/blockchain'
 
+const { t } = useI18n()
 const isLoading = ref(false)
 const orders = ref([])
 const pagination = ref({
@@ -294,13 +296,13 @@ const query = ref({
 })
 
 const statusMap = {
-  0: { label: 'Pending', class: 'bg-yellow-900/50 text-yellow-300 border border-yellow-700/50' },
-  1: { label: 'Paid', class: 'bg-green-900/50 text-green-300 border border-green-700/50' },
-  2: { label: 'Expired', class: 'bg-gray-700/50 text-gray-300 border border-gray-600/50' },
-  3: { label: 'Failed', class: 'bg-red-900/50 text-red-300 border border-red-700/50' }
+  0: { label: t('status.pending'), class: 'bg-yellow-900/50 text-yellow-300 border border-yellow-700/50' },
+  1: { label: t('status.paid'), class: 'bg-green-900/50 text-green-300 border border-green-700/50' },
+  2: { label: t('status.expired'), class: 'bg-gray-700/50 text-gray-300 border border-gray-600/50' },
+  3: { label: t('status.failed'), class: 'bg-red-900/50 text-red-300 border border-red-700/50' }
 }
 
-const getStatusLabel = (status) => statusMap[status]?.label || 'Unknown'
+const getStatusLabel = (status) => statusMap[status]?.label || t('status.unknown')
 const getStatusClass = (status) => statusMap[status]?.class || 'bg-gray-700 text-gray-400'
 
 // Format blockchain address (show first 6 and last 4 characters)
